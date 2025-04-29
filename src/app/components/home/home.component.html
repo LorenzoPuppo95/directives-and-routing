@@ -1,0 +1,8 @@
+<div class="student-container">
+    @for (student of students; track $index){
+        <div class="student-card" [routerLink]="['/detail', student.id]">
+            <img class="student-img" src="{{student.imageUrl}}" alt="">
+            <span>{{student.name}} {{student.surname}}</span>
+        </div>
+    }
+</div>

@@ -1,0 +1,9 @@
+@if (student) {
+    <div class="student-card">
+        <img class="student-img" [src]="student.imageUrl" alt="">
+        <span>{{student.name}} {{student.surname}}</span>
+        <span>{{student.gender}}</span>
+        <span>{{student.nationality}}</span>
+        <span>{{student.age}}</span>
+    </div>
+}
