@@ -6,13 +6,15 @@
     </div>
     
     <div class="form-group">
-        <label for="age">Age</label>
+        <label for="age">Date of Birth</label>
         <input type="date" id="dob" [(ngModel)]="student.dob" name="dob" required>
     </div>
 
     <div class="form-group">
         <label for="nationality">Nationality</label>
-        <input type="string" id="nationality" [(ngModel)]="student.nationality" name="nationality" required>
+        <select id="nationality" [(ngModel)]="student.nationality" name="nationality" required>
+            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
     </div>
 
     <div class="form-group">

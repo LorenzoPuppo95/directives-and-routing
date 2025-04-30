@@ -1,5 +1,5 @@
 form {
-    max-width: 500px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -21,27 +21,29 @@ label {
 
 input[type="text"],
 input[type="date"],
-input[type="string"] {
+input[type="string"],
+input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
     box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 input[type="text"]:focus,
 input[type="date"]:focus,
-input[type="string"]:focus {
+input[type="string"]:focus,
+input[type="number"]:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-button[type="submit"] {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+button {
+    padding: 10px 15px;
+    font-size: 14px;
     color: #fff;
     background-color: #007bff;
     border: none;
@@ -50,6 +52,74 @@ button[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
+button:hover {
     background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.mark-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mark-entry input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.mark-entry button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.mark-entry button:hover {
+    background-color: #a71d2a;
+}
+
+button[type="button"] {
+    margin-top: 10px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #28a745;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+option {
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
 }
