@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../../services/student/student.service';
 import { Student } from '../../model/student';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-detail',
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
@@ -15,6 +17,7 @@ export class DetailComponent {
   studentServ = inject(StudentService);
   student?: Student;
   age?: number;
+  newMark?: number;
 
   constructor(){
     const id = this.route.snapshot.paramMap.get('id');
@@ -51,6 +54,26 @@ export class DetailComponent {
             console.log('Delete operation completed')
           }
       });
+    }
+  }
+
+  addMarksToStudent(marks: number[], newMark: number) {
+    if (this.student) {
+      const newMarks = [...marks, newMark];
+      this.studentServ.updateMarks(this.student.id, newMarks).subscribe({
+        next: (modifiedStudent: Student) => {
+          this.student = modifiedStudent;
+          alert('Marks added successfully!');
+          // console.log('Updated student:', this.student);
+        },
+        error: (error) => {
+          // console.error('Error updating marks:', error);
+          alert('Failed to add marks. Please try again.');
+        }
+      });
+    } else {
+      // console.log('No student selected to add marks.');
+      alert('No student selected. Please try again.');
     }
   }
 }

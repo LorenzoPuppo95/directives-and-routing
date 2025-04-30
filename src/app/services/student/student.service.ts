@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentService {
+  readonly ANTI_CORS = 'https://cors-anywhere.herokuapp.com/';
   readonly BASE_URL = 'https://68109d8127f2fdac241212a7.mockapi.io/';
   readonly STUDENTS_ENDPOINT = "students/";
   constructor(private http: HttpClient) { 
@@ -38,5 +39,11 @@ export class StudentService {
 
   addStudent(student: Student) {
     return this.http.post(this.BASE_URL + this.STUDENTS_ENDPOINT, student);
+  }
+
+  updateMarks(id: string, marks: number[]): Observable<Student> {
+    debugger;
+    console.log("Updating marks for student with ID:", id, "New marks:", marks);
+    return this.http.put<Student>(this.BASE_URL + this.STUDENTS_ENDPOINT + id, { marks });
   }
 }

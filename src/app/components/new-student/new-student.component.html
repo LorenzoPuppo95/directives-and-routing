@@ -24,6 +24,16 @@
         <label for="imageUrl">ImageUrl</label>
         <input type="string" id="imageUrl" [(ngModel)]="student.imageUrl" name="imageUrl" required>
     </div>
+
+    <div class="form-group">
+        <label>Marks</label>
+        <div *ngFor="let mark of student.marks; let i = index" class="mark-entry">
+            <input type="number" [(ngModel)]="student.marks[i]" name="mark{{i}}" required>
+            <button type="button" (click)="removeMark(i)">Remove</button>
+        </div>
+        <input type="number" [(ngModel)]="newMark" [ngModelOptions]="{standalone: true}" placeholder="Enter a new mark">
+        <button type="button" [disabled]="!newMark" min="0" max="10" (click)="addMark()">Add Mark</button>
+    </div>  
     
     <button type="submit" (click)="addStudent()">Add Student</button>
 </form>

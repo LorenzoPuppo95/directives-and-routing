@@ -5,12 +5,18 @@
         <span>{{student.gender}}</span>
         <span>{{student.nationality}}</span>
         <span>{{student.age}}</span>
-        <span>{{student.marks}}</span>
         <div>
             <span><strong>Marks: </strong></span>
             @for (mark of student.marks; track $index) {
-                <span>{{mark}}</span>
+                <span>
+                    {{ mark }}<span *ngIf="$index < student.marks.length - 1">, </span>
+                </span>
             }
+            <form (ngSubmit)="addMarksToStudent(this.student.marks, this.newMark ?? 0)">
+                <label for="mark">Aggiungi un voto</label>
+                <input type="number" name="mark" id="mark" [(ngModel)]="newMark" required>
+                <button type="submit" [disabled]="!newMark">Aggiungi</button>
+            </form>
         </div>
         <button (click)="deleteStudent(student.id)">
             Elimina <i class="fas fa-trash"></i>
