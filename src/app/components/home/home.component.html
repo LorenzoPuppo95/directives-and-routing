@@ -1,3 +1,7 @@
+<div class="sortings">
+    <button (click)="orderByAge()">Age Order</button>
+    <button (click)="orderByName()">Alphabetical Order</button>
+</div>
 <div class="student-container">
     @for (student of students; track $index){
         <div class="student-card" [routerLink]="['/detail', student.id]">

@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentService {
-
   readonly BASE_URL = 'https://68109d8127f2fdac241212a7.mockapi.io/';
   readonly STUDENTS_ENDPOINT = "students/";
   constructor(private http: HttpClient) { 
@@ -20,5 +19,24 @@ export class StudentService {
 
   getStudent(id: string | null): Observable<Student>{
     return this.http.get<Student>(this.BASE_URL+this.STUDENTS_ENDPOINT+"/"+id);
+  }
+
+  deleteStudent(id: string): Observable<void> {
+    return new Observable((observer) => {
+      this.http.delete(this.BASE_URL + this.STUDENTS_ENDPOINT + id).subscribe({
+        next: () => {
+          observer.next();
+          observer.complete();
+        },
+        error: (err) => {
+          console.log(err);
+          observer.error(err);
+        }
+      });
+    });
+  }
+
+  addStudent(student: Student) {
+    return this.http.post(this.BASE_URL + this.STUDENTS_ENDPOINT, student);
   }
 }

@@ -1,16 +1,17 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../../services/student/student.service';
 import { Student } from '../../model/student';
 
 @Component({
   selector: 'app-detail',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
 export class DetailComponent {
   route = inject(ActivatedRoute);
+  router = inject(Router);
   studentServ = inject(StudentService);
   student?: Student;
   age?: number;
@@ -29,11 +30,27 @@ export class DetailComponent {
     }
 
   }
-
-  
   calculateAge(birthdate: Date){
-      const currentYear = new Date().getFullYear();
-      const birthYear = birthdate.getFullYear();
-      return currentYear - birthYear;
+      // const currentYear = new Date().getFullYear();
+      // const birthYear = birthdate.getFullYear();
+      // return currentYear - birthYear;
+      return new Date().getFullYear() - birthdate.getFullYear();
+  }
+
+  deleteStudent(id: string) {
+    const confirmed = confirm("Are you sure you want to delete this student?");
+    if (confirmed && id) {
+      this.studentServ.deleteStudent(id).subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (err) => console.log('Error deleting student:', err),
+        complete: () => 
+          {
+            alert(`Student ${id} deleted successfully!`);
+            console.log('Delete operation completed')
+          }
+      });
+    }
   }
 }

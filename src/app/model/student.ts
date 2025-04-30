@@ -5,7 +5,7 @@ export interface Student {
     nationality: string
     dob: string
     gender: string
-    imageUrl: string
+    imageUrl?: string
     marks :number[]
     id: string
     age?: number

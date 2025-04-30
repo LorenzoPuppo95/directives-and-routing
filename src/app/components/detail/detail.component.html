@@ -5,5 +5,15 @@
         <span>{{student.gender}}</span>
         <span>{{student.nationality}}</span>
         <span>{{student.age}}</span>
+        <span>{{student.marks}}</span>
+        <div>
+            <span><strong>Marks: </strong></span>
+            @for (mark of student.marks; track $index) {
+                <span>{{mark}}</span>
+            }
+        </div>
+        <button (click)="deleteStudent(student.id)">
+            Elimina <i class="fas fa-trash"></i>
+        </button>
     </div>
 }

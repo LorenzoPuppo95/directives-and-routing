@@ -19,4 +19,12 @@ export class HomeComponent {
       error:(err) => console.log(err)
     })
   }
+
+  orderByName(){
+    this.students.sort((a,b) => a.surname.localeCompare(b.surname))
+  }
+
+  orderByAge(){
+    this.students.sort((a,b) => +new Date(a.dob) - +new Date(b.dob));
+  }
 }
