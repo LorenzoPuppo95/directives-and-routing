@@ -33,8 +33,8 @@
             <input type="number" [(ngModel)]="student.marks[i]" name="mark{{i}}" required>
             <button type="button" (click)="removeMark(i)">Remove</button>
         </div>
-        <input type="number" [(ngModel)]="newMark" [ngModelOptions]="{standalone: true}" placeholder="Enter a new mark">
-        <button type="button" [disabled]="!newMark" min="0" max="10" (click)="addMark()">Add Mark</button>
+        <input type="number" [(ngModel)]="newMark" [ngModelOptions]="{standalone: true}" min="0" max="10" placeholder="Enter a new mark">
+        <button type="button" [disabled]="newMark === undefined" (click)="addMark()">Add Mark</button>
     </div>  
     
     <button type="submit" (click)="addStudent()">Add Student</button>
